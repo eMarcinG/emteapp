@@ -1,0 +1,109 @@
+
+###
+### Endpoint to obtain an authentication token
+###
+POST http://localhost:8000/api-token-auth/
+content-type: application/json
+
+{
+  "username": "your_username",
+  "password": "your_password"
+}
+
+###
+### Endpoint to create a new tenant
+###
+POST http://localhost:8000/api/tenants/
+content-type: application/json
+Authorization: Token your_auth_token
+
+{
+  "domain": "newtenant.com"
+}
+
+###
+### Endpoint to list all tenants
+###
+GET http://localhost:8000/api/tenants/
+content-type: application/json
+Authorization: Token your_auth_token
+
+###
+### Endpoint to get details of a specific tenant
+###
+GET http://localhost:8000/api/tenants/{id}/
+content-type: application/json
+Authorization: Token your_auth_token
+
+###
+### Endpoint to create a new organization
+###
+POST http://localhost:8000/api/organizations/
+content-type: application/json
+Authorization: Token your_auth_token
+
+{
+  "name": "New Organization",
+  "tenants": [1]
+}
+
+###
+### Endpoint to list all organizations
+###
+GET http://localhost:8000/api/organizations/
+content-type: application/json
+Authorization: Token your_auth_token
+
+###
+### Endpoint to get details of a specific organization
+###
+GET http://localhost:8000/api/organizations/{id}/
+content-type: application/json
+Authorization: Token your_auth_token
+
+###
+### Endpoint to create a new department
+###
+POST http://localhost:8000/api/departments/
+content-type: application/json
+Authorization: Token your_auth_token
+
+{
+  "name": "New Department",
+  "organization": 1
+}
+
+###
+### Endpoint to list all departments
+###
+GET http://localhost:8000/api/departments/
+content-type: application/json
+Authorization: Token your_auth_token
+
+###
+### Endpoint to get details of a specific department
+###
+GET http://localhost:8000/api/departments/{id}/
+content-type: application/json
+Authorization: Token your_auth_token
+
+###
+### Endpoint to create a new customer
+###
+POST http://localhost:8000/api/customers/
+content-type: application/json
+Authorization: Token your_auth_token
+
+{
+  "name": "New Customer",
+  "department": 1
+}
+
+###
+### Endpoint to list all customers
+###
+GET http://localhost:8000/api/customers/
+content-type: application/json
+Authorization: Token your_auth_token
+
+###

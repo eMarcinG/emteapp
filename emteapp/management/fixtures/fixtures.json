@@ -1,0 +1,65 @@
+[
+    {
+      "model": "management.tenant",
+      "pk": 1,
+      "fields": {
+        "domain": "tenant1.com"
+      }
+    },
+    {
+      "model": "management.tenant",
+      "pk": 2,
+      "fields": {
+        "domain": "tenant2.com"
+      }
+    },
+    {
+      "model": "management.organization",
+      "pk": 1,
+      "fields": {
+        "name": "Organization 1",
+        "tenants": [1]
+      }
+    },
+    {
+      "model": "management.organization",
+      "pk": 2,
+      "fields": {
+        "name": "Organization 2",
+        "tenants": [2]
+      }
+    },
+    {
+      "model": "management.department",
+      "pk": 1,
+      "fields": {
+        "name": "Department 1",
+        "organization": 1
+      }
+    },
+    {
+      "model": "management.department",
+      "pk": 2,
+      "fields": {
+        "name": "Department 2",
+        "organization": 2
+      }
+    },
+    {
+      "model": "management.customer",
+      "pk": 1,
+      "fields": {
+        "name": "Customer 1",
+        "department": 1
+      }
+    },
+    {
+      "model": "management.customer",
+      "pk": 2,
+      "fields": {
+        "name": "Customer 2",
+        "department": 2
+      }
+    }
+  ]
+  
