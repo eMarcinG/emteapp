@@ -9,7 +9,7 @@ class Tenant(models.Model):
         domain (str): The domain of the tenant.
     """
     tenant_id = models.AutoField(primary_key=True)
-    domain = models.CharField(max_length=255)
+    domain = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.domain
