@@ -24,7 +24,7 @@ class Organization(models.Model):
         tenants (ManyToManyField): The tenants to which the organization belongs.
     """
     organization_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     tenants = models.ManyToManyField(Tenant, related_name='organizations')
 
     def __str__(self):
@@ -42,6 +42,9 @@ class Department(models.Model):
     department_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     organization = models.ForeignKey(Organization, related_name='departments', on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('name', 'organization')
 
     def __str__(self):
         return self.name
