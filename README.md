@@ -56,6 +56,30 @@ please note:
 It is highly recommended to instal REST Client extension (for Visual Studio Code) 
 and simply use the file "new.http" with all available endpoints.
 
+# Users groups and permissions
+
+There are three ways to create users in this project:
+
+Using the Superuser Account via the Admin Panel:
+
+1. You can create users using the Django admin panel with your superuser account. 
+Simply log in to the admin panel at http://localhost:8000/admin/, 
+navigate to the "Users" section, and add new users as needed.
+
+2. Importing Fixtures from the fixtures_users.json File:
+
+Another method is to load user data from the fixtures_users.json file. 
+To do this, make sure the file is placed in the management/fixtures/ directory and run the following command:
+
+python manage.py loaddata management/fixtures/fixtures_users.json
+
+3. Running the create_test_users.py Script:
+
+You can also create test users by running the create_test_users.py script. Ensure that the script is placed in the root directory of the project and execute the following command:
+
+python create_test_users.py
+
+
 # Development
 Running Tests
 To run tests, use the following command:
