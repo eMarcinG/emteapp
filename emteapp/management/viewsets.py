@@ -4,9 +4,6 @@ from .models import Tenant, Organization, Department, Customer
 from .serializers import TenantSerializer, OrganizationSerializer, DepartmentSerializer, CustomerSerializer
 
 class IsAdminOrSuperuser(BasePermission):
-    """
-    Allows editing only by superusers or users belonging to the "Admin" group..
-    """
     def has_permission(self, request, view):
         if request.method in SAFE_METHODS:
             return True
@@ -20,7 +17,8 @@ class TenantViewSet(viewsets.ModelViewSet):
     serializer_class = TenantSerializer
 
     def get_queryset(self):
-        # Only current tenant
+        if self.request.user.is_superuser or self.request.user.groups.filter(name='Admin').exists():
+            return Tenant.objects.all()
         return Tenant.objects.filter(pk=self.request.tenant.pk)
 
 class OrganizationViewSet(viewsets.ModelViewSet):
@@ -28,7 +26,8 @@ class OrganizationViewSet(viewsets.ModelViewSet):
     serializer_class = OrganizationSerializer
 
     def get_queryset(self):
-        # Filter by tenant
+        if self.request.user.is_superuser or self.request.user.groups.filter(name='Admin').exists():
+            return Organization.objects.all()
         return Organization.objects.filter(tenants=self.request.tenant)
 
 class DepartmentViewSet(viewsets.ModelViewSet):
@@ -36,7 +35,8 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     serializer_class = DepartmentSerializer
 
     def get_queryset(self):
-        # Filter by tenant organization
+        if self.request.user.is_superuser or self.request.user.groups.filter(name='Admin').exists():
+            return Department.objects.all()
         return Department.objects.filter(organization__tenants=self.request.tenant)
 
 class CustomerViewSet(viewsets.ModelViewSet):
@@ -44,7 +44,8 @@ class CustomerViewSet(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
 
     def get_queryset(self):
-        # Filter by department - organization tenant
+        if self.request.user.is_superuser or self.request.user.groups.filter(name='Admin').exists():
+            return Customer.objects.all()
         return Customer.objects.filter(
             department__organization__tenants=self.request.tenant
         )

@@ -18,13 +18,18 @@ class TenantMiddleware:
 
         user = get_user(request)
 
-        if user.is_authenticated and user.is_superuser:
+        if user.is_authenticated and (user.is_superuser or user.groups.filter(name='Admin').exists()):
+            request.tenant = None
+            set_current_tenant(None)
             return self.get_response(request)
 
         tenant = self._get_tenant(request)
         
         if not tenant:
             return HttpResponseBadRequest("Wrong tenant")
+
+        if user.is_authenticated and user.tenant != tenant:
+            return HttpResponseBadRequest("User does not belong to this tenant")
 
         request.tenant = tenant
         set_current_tenant(tenant)

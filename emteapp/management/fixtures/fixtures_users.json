@@ -52,27 +52,29 @@
     }
   },
   {
-    "model": "auth.user",
-    "pk": 2,
+    "model": "management.customuser",
+    "pk": 3,
     "fields": {
       "username": "adminuser",
       "password": "pbkdf2_sha256$260000$8HlfQ3LgBP1C$KxyI3YrOgjwfWh3HyDI6UgHU2Rs0tsXyCEI5uBr/SRs=",
       "is_superuser": false,
       "is_staff": true,
       "is_active": true,
+      "tenant": null,
       "groups": [1],
       "user_permissions": []
     }
   },
   {
-    "model": "auth.user",
-    "pk": 3,
+    "model": "management.customuser",
+    "pk": 4,
     "fields": {
       "username": "readonlyuser",
       "password": "pbkdf2_sha256$260000$8HlfQ3LgBP1C$KxyI3YrOgjwfWh3HyDI6UgHU2Rs0tsXyCEI5uBr/SRs=",
       "is_superuser": false,
       "is_staff": false,
       "is_active": true,
+      "tenant": null,
       "groups": [2],
       "user_permissions": []
     }
