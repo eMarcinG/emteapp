@@ -1,5 +1,6 @@
 from django.http import HttpResponseBadRequest
 from django.conf import settings
+from django.contrib.auth import get_user
 from .models import Tenant
 from .utils import set_current_tenant
 
@@ -7,12 +8,17 @@ class TenantMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
         self.excluded_paths = [
-            '/api-token-auth/',  
-            '/admin/',           
+            '/api-token-auth/',
+            '/admin/',
         ]
 
     def __call__(self, request):
-        if request.path in self.excluded_paths:
+        if request.path.startswith('/admin'):
+            return self.get_response(request)
+
+        user = get_user(request)
+
+        if user.is_authenticated and user.is_superuser:
             return self.get_response(request)
 
         tenant = self._get_tenant(request)
@@ -28,14 +34,12 @@ class TenantMiddleware:
         return response
 
     def _get_tenant(self, request):
-        # Check domain
         host = request.get_host().split(':')[0]
         try:
             return Tenant.objects.get(domain=host)
         except Tenant.DoesNotExist:
             pass
 
-        # Check Headers
         tenant_domain = request.headers.get('X-Tenant-Domain')
         tenant_id = request.headers.get('X-Tenant-ID')
         
