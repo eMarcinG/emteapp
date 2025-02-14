@@ -53,7 +53,7 @@
   },
   {
     "model": "auth.user",
-    "pk": 1,
+    "pk": 2,
     "fields": {
       "username": "adminuser",
       "password": "pbkdf2_sha256$260000$8HlfQ3LgBP1C$KxyI3YrOgjwfWh3HyDI6UgHU2Rs0tsXyCEI5uBr/SRs=",
@@ -66,7 +66,7 @@
   },
   {
     "model": "auth.user",
-    "pk": 2,
+    "pk": 3,
     "fields": {
       "username": "readonlyuser",
       "password": "pbkdf2_sha256$260000$8HlfQ3LgBP1C$KxyI3YrOgjwfWh3HyDI6UgHU2Rs0tsXyCEI5uBr/SRs=",
