@@ -13,7 +13,7 @@ class TenantMiddleware:
         ]
 
     def __call__(self, request):
-        if request.path.startswith('/admin'):
+        if request.path.startswith('/admin') or request.path.startswith('/api-token-auth'):
             return self.get_response(request)
 
         user = get_user(request)
