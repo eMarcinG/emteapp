@@ -23,12 +23,11 @@ and API endpoints for managing tenants, organizations, departments, and customer
 
 ### Step 1: Clone the repository
 
-git clone https://github.com/yourusername/multi-tenant-management.git
-cd multi-tenant-management
+git clone https://github.com/eMarcinG/emteapp.git
 
 ### Step 2: Copy a .env file included into email.
 
-Copy atached .env file into the base project
+Copy attached .env file into the base project ( added to email )
 
 ### Step 3:  Build and run Docker containers
 
