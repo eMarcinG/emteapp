@@ -1,0 +1,80 @@
+[
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "Admin",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+      "name": "ReadOnly",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can view tenant",
+      "codename": "view_tenant",
+      "content_type": 1
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can add tenant",
+      "codename": "add_tenant",
+      "content_type": 1
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can change tenant",
+      "codename": "change_tenant",
+      "content_type": 1
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can delete tenant",
+      "codename": "delete_tenant",
+      "content_type": 1
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "adminuser",
+      "password": "pbkdf2_sha256$260000$8HlfQ3LgBP1C$KxyI3YrOgjwfWh3HyDI6UgHU2Rs0tsXyCEI5uBr/SRs=",
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "groups": [1],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "readonlyuser",
+      "password": "pbkdf2_sha256$260000$8HlfQ3LgBP1C$KxyI3YrOgjwfWh3HyDI6UgHU2Rs0tsXyCEI5uBr/SRs=",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "groups": [2],
+      "user_permissions": []
+    }
+  }
+]
