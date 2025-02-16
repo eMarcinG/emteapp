@@ -19,7 +19,7 @@ class TenantViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         if self.request.user.is_superuser or self.request.user.groups.filter(name='Admin').exists():
             return Tenant.objects.all()
-        return Tenant.objects.filter(pk=self.request.tenant.pk)
+        return Tenant.objects.filter(pk=self.request.user.tenant.pk)
 
 class OrganizationViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminOrSuperuser]
@@ -28,7 +28,7 @@ class OrganizationViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         if self.request.user.is_superuser or self.request.user.groups.filter(name='Admin').exists():
             return Organization.objects.all()
-        return Organization.objects.filter(tenants=self.request.tenant)
+        return Organization.objects.filter(tenants=self.request.user.tenant)
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminOrSuperuser]
@@ -37,7 +37,7 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         if self.request.user.is_superuser or self.request.user.groups.filter(name='Admin').exists():
             return Department.objects.all()
-        return Department.objects.filter(organization__tenants=self.request.tenant)
+        return Department.objects.filter(organization__tenants=self.request.user.tenant)
 
 class CustomerViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdminOrSuperuser]
@@ -47,5 +47,5 @@ class CustomerViewSet(viewsets.ModelViewSet):
         if self.request.user.is_superuser or self.request.user.groups.filter(name='Admin').exists():
             return Customer.objects.all()
         return Customer.objects.filter(
-            department__organization__tenants=self.request.tenant
+            department__organization__tenants=self.request.user.tenant
         )

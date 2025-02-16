@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'management',
 ]
 
+AUTH_USER_MODEL = 'management.CustomUser'
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
