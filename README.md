@@ -72,6 +72,21 @@ To do this, make sure the file is placed in the management/fixtures/ directory a
 
 python manage.py loaddata management/fixtures/fixtures_users.json
 
+Users:
+    admin: A superuser who can perform any operation.
+
+    adminuser: An admin who has permission to read all resources without tenant middleware checks.
+
+    readonlyuser: A standard user with double tenant verification enforced by middleware.
+
+Note:
+    Please change the users' passwords.
+
+    Assign a tenant to readonlyuser user.
+
+    Add the tenant domain in ALLOWED_HOSTS in the .env file.
+
+
 3. Running the create_test_users.py Script:
 
 You can also create test users by running the create_test_users.py script. Ensure that the script is placed in the root directory of the project and execute the following command:
