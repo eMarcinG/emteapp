@@ -73,6 +73,7 @@ To do this, make sure the file is placed in the management/fixtures/ directory a
 python manage.py loaddata management/fixtures/fixtures_users.json
 
 Users:
+
     admin: A superuser who can perform any operation.
 
     adminuser: An admin who has permission to read all resources without tenant middleware checks.
@@ -80,6 +81,7 @@ Users:
     readonlyuser: A standard user with double tenant verification enforced by middleware.
 
 Note:
+
     Please change the users' passwords.
 
     Assign a tenant to readonlyuser user.
